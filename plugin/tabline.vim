@@ -32,7 +32,7 @@ function! Tabline()
     let s .= pre . '%' . tab . 'T'
     let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
     let s .= tab .':'
-    let s .= (bufname != '' ? fnamemodify(bufname, ':t') : '[No Name]')
+    let s .= (bufname != '' ? fnamemodify(bufname, ':t') : ' - ')
 
     if bufmodified
       let s .= '[+]'
