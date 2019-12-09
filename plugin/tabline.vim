@@ -18,12 +18,13 @@ let g:loaded_tabline_vim = 1
 function! Tabline()
   let s = ''
   for i in range(tabpagenr('$'))
-    let tab = i + 1
+    let tab = (i + 1)
     let winnr = tabpagewinnr(tab)
     let buflist = tabpagebuflist(tab)
     let bufnr = buflist[winnr - 1]
     let bufname = bufname(bufnr)
     let bufmodified = getbufvar(bufnr, "&mod")
+    let bufreadonly = getbufvar(bufnr, '&ro')
 
     let pre = ''
     if tab > 1
@@ -37,6 +38,10 @@ function! Tabline()
     if bufmodified
       let s .= '[+]'
     endif
+    if bufreadonly
+      let s .= '[r]'
+    endif
+
   endfor
 
   let s .= '%#TabLineFill#'
